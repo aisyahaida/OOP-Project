@@ -43,7 +43,7 @@
                     </thead>
                     <tbody class="text-gray-700">
                     <!-- Static Data Rows -->
-                    <?php foreach ($obj_role as $role) { ?>
+                    <?php foreach ($roles as $role) { ?>
                         <tr class="text-center">
                         <td class="py-3 px-4 text-blue-600"><?php echo htmlspecialchars($role->role_id) ?></td>
                         <td class="w-1/4 py-3 px-4"><?php echo htmlspecialchars($role->role_name) ?></td>

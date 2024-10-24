@@ -1,5 +1,5 @@
 <?php
-class Role {
+class Peran {
     public $role_id;
     public $role_name;
     public $role_description;

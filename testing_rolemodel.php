@@ -1,17 +1,14 @@
 <?php
+session_start();
 require_once 'model/role_model.php';
 
-$objRole = new RoleModel();
-$objRole->addRole("Pengembang", "Mengembangkan Software", 0);
-$objRole->addRole("Analis Data", "Menganalisis Data", 1);
-$objRole->addRole("Pengguna", "Pengguna Aplikasi", 1);
+$objRole = new ModelRole();
 
-foreach ($objRole->getRoles() as $role) {
-    echo "Role ID : ".$role->role_id."<br>";
-    echo "Nama : ".$role->role_name."<br>";
-    echo "Deskripsi : ".$role->role_description."<br>";
-    echo "Status Role : ".$role->role_status."<br>";
+foreach ($objRole->getAllRoles() as $role){
+    echo "Role Id: ".$role->role_id."<br>";
+    echo "Role Name: ".$role->role_name."<br>";
+    echo "Role Description: ".$role->role_description."<br>";
+    echo "Role Status: ".($role->role_status ? 'Active' : 'Inactive')."<br><br>";
 }
+session_destroy();
 ?>
-
-
