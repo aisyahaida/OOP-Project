@@ -39,10 +39,10 @@ class ModelRole {
             if($role->role_id == $role_id){
                 return $role;
             }
-        }
+        }return null;
     }
 
-    public function updateRole($role_id, $role_name, $role_description, $role_status){
+    public function updateRole($role_id, $role_name, $role_description, $role_status): bool {
         foreach($this->roles as $role){
             if ($role->role_id == $role_id){
                 $role->role_name = $role_name;
