@@ -38,21 +38,15 @@ $role = $obj_modelRole->getRoleById(role_id: $role_id);
                         value="<?php echo htmlspecialchars(string: $role->role_name); ?>" required>
                     </div>
 
-                    <!-- Nama sembarang -->
-                    <div class="mb-4">
-                        <label for="role_name" class="block text-gray-700 text-sm font-bold mb-2">Nama sembarang:</label>
-                        <input type="text" id="role_name" name="role_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required
-                               value="">
-                    </div>
-
                     <!-- Role Deskripsi -->
                     <div class="mb-4 text-left">
                         <label for="role_description" class="block text-gray-700 text-sm font-bold mb-2">Role
                             Deskripsi:</label>
-                        <textarea id="role_description" name="role_description"
+                        <textarea  id="role_description" name="role_description"
                                   class="text-left shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                   placeholder="Masukkan Deskripsi Role" rows="3"
                                   required>
+                                  <?php echo htmlspecialchars(string: $role->role_description);  ?>
                         </textarea>
                     </div>
 
