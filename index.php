@@ -102,21 +102,69 @@ switch($modul) {
                     include 'views/barang_input.php';
                 }
                 break;
+            case 'edit' :
+                    if (!isset($_GET['id']) || empty($_GET['id'])) {
+                        die("Id Barang Tidak Ditemukan.");
+                    }
+                    $id = $_GET['id'];
+                    $barangs = $obj_modelBarang->getBarangById(barang_id: $id);
+    
+                    if (!$barangs) {
+                        die("Barang Tidak Ditemukan.");
+                    }
+                    include 'views/barang_update.php';
+                    break;
+            case 'update':
+                    if (!isset($_GET['id'])) {
+                        die("Id Barang Tidak Ditemukan.");
+                    }
+                    $barang_id = $_GET['id'];
+                    $obj_barang = new ModelBarang();
+                    $barangs = $obj_barang->getBarangById(barang_id: $barang_id);
+    
+                    if (!$barangs) {
+                        die("Barang Tidak Ditemukan.");
+                    }
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        $barang_nama = $_POST['barang_nama'];
+                        $barang_stok = $_POST['barang_stok'];
+                        $barang_harga = $_POST['barang_harga'];
+    
+                        $obj_barang->updateBarang($barang_id,$barang_nama,$barang_stok,$barang_harga);
+    
+                        header(header: 'Location: index.php?modul=barang');
+                        exit;
+                    } 
+                    break;   
             case 'delete':
-                if (!isset($_GET['id']) || empty($_GET['id'])) {
-                    die("Id Peran Tidak Ditemukan.");
-                }
-                $id = $_GET['id'];
-                $cek = $obj_modelBarang->getBarangById(barang_id: $id);
-                if (!$cek) {
-                    die("Role Tidak Ditemukan.");
-                }
-                $obj_modelBarang->deleteBarang(barang_id: $id);
-                header(header: 'Location: index.php?modul=barang');
-                exit;
-                break;
+                    if (!isset($_GET['id']) || empty($_GET['id'])) {
+                        die("Id Peran Tidak Ditemukan.");
+                    }
+                    $id = $_GET['id'];
+                    $cek = $obj_modelBarang->getBarangById(barang_id: $id);
+                    if (!$cek) {
+                        die("Role Tidak Ditemukan.");
+                    }
+                    $obj_modelBarang->deleteBarang(barang_id: $id);
+                    header(header: 'Location: index.php?modul=barang');
+                    exit;
+                    break;
             break;
-
+            // case 'user':
+            //     $fitur = isset($_GET['fitur']) ? $_GET['fitur'] : null;
+            //     switch ($fitur){
+            //         case 'add':
+            //             if ($_SERVER['REQUEST_METHOD']=='POST'){
+            //                 $name = $_POST['name'];
+            //                 $username = $_POST['username'];
+            //                 $password = $_POST['password'];
+            //                 $role_Status = $_POST['role_status'];
+            //                 $obj_User->addUser($role_status,$username,$password,$name);
+            //             } else {
+            //                 $listRoleName = $obj_Role->getListRoleName();
+            //                 include 'views/user_input.php';
+            //             }
+            //             break;
             default:
                 $barangs = $obj_modelBarang->getAllBarangs();
                 // print_r($barangs);
@@ -130,4 +178,5 @@ switch($modul) {
     break;   
    
 }
- ?>
+
+?>

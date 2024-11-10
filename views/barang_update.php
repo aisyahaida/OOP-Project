@@ -5,14 +5,13 @@
 require_once 'model/barang_model.php';
 $barang_id = $_GET['id'];
 $obj_modelBarang = new ModelBarang();
-$role = $obj_modelBarang->getBarangById(barang_id: $barang_id);
+$barang = $obj_modelBarang->getBarangById(barang_id: $barang_id); 
 ?>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Barang</title>
-<!--    <link href="./Views/output.css" rel="stylesheet">-->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
@@ -31,31 +30,28 @@ $role = $obj_modelBarang->getBarangById(barang_id: $barang_id);
             <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
                 <h2 class="text-2xl font-bold mb-6 text-gray-800">Input Barang</h2>
                 <form action="index.php?modul=barang&fitur=update&id=<?php echo $barang->barang_id; ?>" method="POST">
-                    <!-- Nama Role -->
+                    <!-- Nama Barang -->
                     <div class="mb-4">
                         <label for="barang_nama" class="block text-gray-700 text-sm font-bold mb-2">Nama Barang:</label>
-                        <input type="text" id="barang_nama" name="barang_nama" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required
-                        value="<?php echo htmlspecialchars(string: $barang->barang_nama); ?>" required>
+                        <input type="text" id="barang_nama" name="barang_nama" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        value="<?php echo htmlspecialchars($barang->barang_nama); ?>" required>
                     </div>
 
-                    <!-- Role Deskripsi -->
+                    <!-- Stok Barang -->
                     <div class="mb-4 text-left">
-                        <label for="role_description" class="block text-gray-700 text-sm font-bold mb-2">Stok Barang:</label>
-                        <textarea  id="barang_stok" name="barang_stok"
+                        <label for="barang_stok" class="block text-gray-700 text-sm font-bold mb-2">Stok Barang:</label>
+                        <textarea id="barang_stok" name="barang_stok"
                                   class="text-left shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                   placeholder="Masukkan Stok Barang" rows="3"
-                                  required>
-                                  <?php echo htmlspecialchars(string: $barang->barang_stok);  ?>
-                        </textarea>
+                                  required><?php echo htmlspecialchars($barang->barang_stok); ?></textarea>
                     </div>
 
-                    <!-- Role Status -->
+                    <!-- Harga Barang -->
                     <div class="mb-4">
                         <label for="barang_harga" class="block text-gray-700 text-sm font-bold mb-2">Harga Barang:</label>
                         <input type="text" id="barang_harga" name="barang_harga" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required
-                        value="<?php echo htmlspecialchars(string: $barang->barang_harga); ?>" required>
+                        value="<?php echo htmlspecialchars($barang->barang_harga); ?>" required>
                     </div>
-
 
                     <!-- Submit Button -->
                     <div class="flex items-center justify-between">
